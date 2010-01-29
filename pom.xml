@@ -43,9 +43,9 @@
       <url>file:///Users/duns/sonatype/git/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>duns-maven-snapshots</id>
-      <name>Duns' Maven Snapshots</name>
-      <url>file:///Users/duns/sonatype/git/maven-snapshots</url>
+      <id>thirdparty-snapshot</id>
+      <name>TVWorks Third-party Maven Snapshots</name>
+      <url>http://repo.tvworks.com/content/repositories/thirdparty-snapshot/</url>
     </snapshotRepository>
   <!-- temporarily until we have a fixed site -->
     <site>
