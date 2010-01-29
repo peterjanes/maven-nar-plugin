@@ -247,6 +247,23 @@ public class Linker
                 throw new MojoFailureException( "Cannot deduce version number from: " + out.toString() );
             }
         }
+        else if ( name.equals( "cl" ) )
+        {
+/* TODO: figure out how to find the version
+            NarUtil.runCommand( "cl", new String[] { "/QV" }, null, null, out, err, dbg );
+            Pattern p = Pattern.compile( "\\d+\\.\\d+" );
+            Matcher m = p.matcher( err.toString() );
+            if ( m.find() )
+            {
+                version = m.group( 0 );
+            }
+            else
+            {
+                throw new MojoFailureException( "Cannot deduce version number from: " + out.toString() );
+            }
+*/
+            version = "15.00.30729.01";
+        }
         else
         {
             throw new MojoFailureException( "Cannot find version number for linker '" + name + "'" );
