@@ -51,6 +51,13 @@ public class NarGnuConfigureMojo
      */
     private boolean gnuConfigureSkip;
 
+    /**
+     * Skip running of configure and therefore also autogen.sh
+     * 
+     * @parameter expression="${nar.gnu.configure.args}" default-value=""
+     */
+    private String gnuConfigureArgs;
+
     private static final String AUTOGEN = "autogen.sh";
 
     private static final String BUILDCONF = "buildconf";
@@ -101,8 +108,8 @@ public class NarGnuConfigureMojo
                 getLog().info( "Running GNU " + CONFIGURE );
                 NarUtil.makeExecutable( configure, getLog() );
                 int result =
-                    NarUtil.runCommand( "./" + configure.getName(), new String[] { "--disable-ccache",
-                        "--prefix=" + getGnuAOLTargetDirectory().getAbsolutePath() }, targetDir, null, getLog() );
+                    NarUtil.runCommand( "sh", new String[] { "./" + configure.getName(), "--disable-ccache",
+                        "--prefix=" + getGnuAOLTargetDirectory().getAbsolutePath(), gnuConfigureArgs }, targetDir, null, getLog() );
                 if ( result != 0 )
                 {
                     throw new MojoExecutionException( "'" + CONFIGURE + "' errorcode: " + result );
@@ -121,7 +128,8 @@ public class NarGnuConfigureMojo
         }
         
         NarUtil.makeExecutable( autogen, getLog() );
-        int result = NarUtil.runCommand( "./" + autogen.getName(), null, targetDir, null, getLog() );
+        getLog().debug("running sh ./" + autogen.getName());
+        int result = NarUtil.runCommand( "sh", new String[] { "./" + autogen.getName() }, targetDir, null, getLog() );
         if ( result != 0 )
         {
             throw new MojoExecutionException( "'" + autogen.getName() + "' errorcode: " + result );
