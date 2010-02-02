@@ -35,7 +35,7 @@
   </description>
   <url>http://duns.github.com/maven-nar-plugin/</url>
 
-  <!-- to avoid MDEPLOY-50 and to deploy to duns' github repository -->
+  <!-- to deploy to duns' github repository -->
   <distributionManagement>
   <repository>
     <id>duns-maven-releases</id>
@@ -43,9 +43,9 @@
       <url>file:///Users/duns/sonatype/git/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>thirdparty-snapshot</id>
-      <name>TVWorks Third-party Maven Snapshots</name>
-      <url>http://repo.tvworks.com/content/repositories/thirdparty-snapshot/</url>
+      <id>duns-maven-snapshots</id>
+      <name>Duns' Maven Snapshots</name>
+      <url>file:///Users/duns/sonatype/git/maven-snapshots</url>
     </snapshotRepository>
   <!-- temporarily until we have a fixed site -->
     <site>
@@ -162,6 +162,15 @@
 
   <build>
     <defaultGoal>install</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <reporting>
