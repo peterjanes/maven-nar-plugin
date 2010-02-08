@@ -43,11 +43,17 @@ public class NarMsvcMakeMojo
             return;
         }
 
-        getLog().info( "Running devenv on " + getMsvcSlnFile().getPath() );
-        int result = NarUtil.runCommand( "devenv", new String[] { getMsvcSlnFile().getPath(), "/make" }, null, null, getLog() );
-        if ( result != 0 )
+        if ( getMsvcSlnFile().exists() ) {
+            getLog().info( "Running devenv on " + getMsvcSlnFile().getPath() );
+            int result = NarUtil.runCommand( "devenv", new String[] { getMsvcSlnFile().getPath(), "/make" }, null, null, getLog() );
+            if ( result != 0 )
+            {
+                throw new MojoExecutionException( "'devenv' errorcode: " + result );
+            }
+        }
+        else
         {
-            throw new MojoExecutionException( "'devenv' errorcode: " + result );
+            getLog().warn( ".sln file " + getMsvcSlnFile().getPath() + " does not exist, not running devenv." );
         }
     }
 }
