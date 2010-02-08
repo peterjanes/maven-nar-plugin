@@ -19,6 +19,9 @@ package org.apache.maven.plugin.nar;
  * under the License.
  */
 
+import java.util.Properties;
+
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
@@ -27,17 +30,30 @@ import org.apache.maven.plugin.MojoFailureException;
  * 
  * @goal nar-validate
  * @phase validate
+ * @requiresSession
  * @author Mark Donszelmann
  */
 public class NarValidateMojo
     extends AbstractCompileMojo
 {
+    /**
+     * The current build session instance.
+     *
+     * @parameter expression="${session}"
+     * @required
+     * @readonly
+     */
+    private MavenSession session;
+
     public final void narExecute()
         throws MojoExecutionException, MojoFailureException
     {
         // check aol
         AOL aol = getAOL();
         getLog().info( "Using AOL: " + aol );
+        Properties userProperties = session.getUserProperties();
+        userProperties.setProperty("maven.nar.aol", aol.toString());
+        session.setUserProperties(userProperties);
 
         // check linker exists in retrieving the version number
         Linker linker = getLinker();

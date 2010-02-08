@@ -69,7 +69,7 @@
   </issueManagement>
 
   <properties>
-    <mavenVersion>2.0.9</mavenVersion>
+    <mavenVersion>2.2.1</mavenVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -103,12 +103,12 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-toolchain</artifactId>
-      <version>2.0.10</version>
+      <version>${mavenVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>2.0.10</version>
+      <version>${mavenVersion}</version>
     </dependency>
     
     <dependency>
