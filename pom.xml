@@ -59,8 +59,8 @@
   </prerequisites>
 
   <scm>
-    <connection>scm:git:git://github.com/duns/maven-nar-plugin.git</connection>
-    <developerConnection>scm:git:git://github.com/duns/maven-nar-plugin.git</developerConnection>
+    <connection>scm:git:git://github.com/peterjanes/maven-nar-plugin.git</connection>
+    <developerConnection>scm:git:git://github.com/peterjanes/maven-nar-plugin.git</developerConnection>
     <url>http://github.com/duns/maven-nar-plugin</url>
   </scm>
   <issueManagement>
