@@ -166,6 +166,18 @@ public class NarInfo
     {
         return getProperty( aol, "libs.names", artifactId + "-" + version );
     }
+    
+    public final void addLib( AOL aol, String lib )
+    {
+        String libs = getProperty( aol, "libs.names" );
+        libs = ( libs == null ) ? lib : libs + "," + lib;
+        setProperty( aol, "libs.names", libs );
+    }
+    
+    public final void setLibs( AOL aol, String libs )
+    {
+        setProperty( aol, "libs.names", libs );
+    }
 
     public final String getSysLibs( AOL aol )
     {
