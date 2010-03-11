@@ -44,6 +44,14 @@ public class Library
     public static final String NONE = "none"; // no library produced
 
     /**
+     * Name of the library being generated.
+     * Defaults to null.
+     * 
+     * @parameter expression=""
+     */
+    private String name = null;
+    
+    /**
      * Type of the library to generate. Possible choices are: "plugin", "shared", "static", "jni" or "executable".
      * Defaults to "shared".
      * 
@@ -117,6 +125,11 @@ public class Library
      */
     private List/* <String> */args = new ArrayList();
 
+    public final String getName()
+    {
+        return name;
+    }
+    
     public final String getType()
     {
         return type;

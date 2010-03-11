@@ -21,6 +21,7 @@ package org.apache.maven.plugin.nar;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -58,6 +59,16 @@ public class NarPackageMojo
     {
         // let the layout decide which nars to attach
         getLayout().attachNars( getTargetDirectory(), archiverManager, projectHelper, getMavenProject(), getNarInfo() );
+        
+        for ( Iterator i = getLibraries().iterator(); i.hasNext(); )
+        {
+            Library library = (Library) i.next();
+            
+            if ( library.getName() != null )
+            {
+                getNarInfo().addLib( getAOL(), library.getName() );
+            }
+        }
         
         try
         {
